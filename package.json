@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "seo:postbuild": "node scripts/postbuild.mjs",
-    "build:seo": "npm run build && npm run seo:postbuild",
+    "seo:postbuild": "npm run postbuild",
+    "build:seo": "npm run build",
+    "postbuild": "node scripts/postbuild.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {
