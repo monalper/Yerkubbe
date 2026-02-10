@@ -1,0 +1,389 @@
+.header {
+  position: relative;
+  padding: 16px var(--page-pad-x);
+  --nav-control-h: 40px;
+  z-index: 10000;
+  isolation: isolate;
+
+  background: rgba(245, 245, 247, 0.78);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
+}
+
+.headerExpanded {
+  background: rgba(245, 245, 247, 0.9);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(245, 245, 247, 0.38);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(18px) saturate(180%);
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 12px;
+}
+
+.topInner {
+  max-width: var(--reader-shell);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.headerWide .topInner {
+  max-width: none;
+  margin: 0;
+}
+
+.brand {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Source Serif 4', ui-serif, 'Iowan Old Style', 'Palatino Linotype', Palatino, Garamond, Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(30px, 2.6vw, 24px);
+  letter-spacing: -0.02em;
+  color: #1d1d1f;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.logo {
+  display: block;
+  height: calc(var(--nav-control-h) * 0.8);
+  width: auto;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.searchInline {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.searchInlineForm {
+  position: absolute;
+  right: calc(var(--nav-control-h) + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.searchInlineShell {
+  height: var(--nav-control-h);
+  width: 0;
+  opacity: 0;
+  transform: translateX(10px);
+  pointer-events: none;
+  overflow: hidden;
+  transition: width 180ms ease, opacity 150ms ease, transform 180ms ease;
+  will-change: width, opacity, transform;
+}
+
+.searchInlineShellOpen {
+  width: clamp(200px, 34vw, 360px);
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.searchField {
+  position: relative;
+  height: var(--nav-control-h);
+  width: 100%;
+  border-radius: 9999px;
+  background: var(--field);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.searchField:focus-within {
+  background: var(--paper);
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--muted2);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+  padding: 0 16px 0 44px;
+  background: transparent;
+  border: 0;
+  border-radius: 9999px;
+}
+
+.searchInput:focus,
+.searchInput:focus-visible {
+  outline: none;
+}
+
+.iconButton {
+  height: var(--nav-control-h);
+  width: var(--nav-control-h);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.iconButton:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.iconButton[aria-expanded='true'] {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  color: var(--text);
+}
+
+.searchPanel {
+  padding: 16px;
+}
+
+.searchHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.searchPopupForm {
+  flex: 1 1 auto;
+}
+
+.searchBody {
+  margin-top: 12px;
+  max-height: min(520px, calc(100vh - 240px));
+  overflow: auto;
+}
+
+.searchMuted {
+  margin: 0;
+  color: var(--muted);
+}
+
+.searchResults {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: grid;
+  gap: 14px;
+}
+
+.searchResultItem {
+  padding: 0;
+}
+
+.searchResultTitle {
+  font-size: 16px;
+  font-weight: 650;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.searchResultTitle:hover {
+  text-decoration: underline;
+}
+
+.searchResultSnippet {
+  margin: 6px 0 0;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.searchResultMeta {
+  margin: 6px 0 0;
+  color: var(--muted2);
+  font-size: 13px;
+}
+
+.searchFooter {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.searchHint {
+  margin: 0;
+  color: var(--muted2);
+  font-size: 13px;
+}
+
+.searchAllLink {
+  font-weight: 600;
+}
+
+.dropdownWrap {
+  position: relative;
+  z-index: 1;
+  padding: 12px var(--page-pad-x) 16px;
+}
+
+.menuPanel {
+  max-width: var(--reader-shell);
+  margin: 0 auto;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  animation: menuPop 160ms ease-out;
+}
+
+.menuPanelBare {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+@keyframes menuPop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menuNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.menuLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 12px;
+  border-radius: 14px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menuLink:hover {
+  background: rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+}
+
+.menuDivider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 8px 6px;
+}
+
+.link,
+.navItem {
+  color: var(--accent);
+}
+
+.buttonLink {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuPanel {
+    animation: none;
+  }
+
+  .searchInlineShell {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* Mobil Görünüm */
+@media (max-width: 640px) {
+  .header {
+    padding: 14px var(--page-pad-x);
+    --nav-control-h: 36px;
+  }
+
+  .topInner {
+    gap: 12px;
+  }
+
+  .brand {
+    font-size: clamp(24px, 7vw, 32px);
+  }
+
+  .searchIcon {
+    left: 12px;
+  }
+
+  .searchInput {
+    padding: 0 14px 0 40px;
+  }
+
+  .searchBody {
+    max-height: min(520px, calc(100vh - 210px));
+  }
+
+  .searchInlineShellOpen {
+    width: clamp(150px, 50vw, 240px);
+  }
+
+  .dropdownWrap {
+    padding: 12px var(--page-pad-x) 14px;
+  }
+
+  .menuPanel {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .menuLink {
+    font-size: 16px;
+    padding: 10px 10px;
+    border-radius: 12px;
+  }
+}

@@ -1,0 +1,134 @@
+.footer {
+  background-color: #1d1d1f;
+  padding: 64px 24px 34px;
+  color: #e6e2d8;
+}
+
+/* layout */
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.brandSection {
+  max-width: 360px;
+}
+
+.brandLink {
+  display: inline-flex;
+}
+
+/*
+  Logo rengi:
+  - SVG tek renkliyse: bu filter açık taş/parşömen tonuna çeker
+  - currentColor destekliyorsa: filter’ı kaldır, color ver
+*/
+.logo {
+  height: 42px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(0.88);
+  opacity: 0.95;
+}
+
+/* metinler */
+.description {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #cfc9bc;
+}
+
+.motto {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mottoLabel {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #9f9585;
+}
+
+.mottoText {
+  font-size: 13px;
+  color: #bdb6a8;
+}
+
+/* navigasyon */
+.nav {
+  display: flex;
+  gap: 72px;
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.groupTitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #9f9585;
+  margin-bottom: 8px;
+}
+
+.link {
+  font-size: 14px;
+  color: #e6e2d8;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.link:hover {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* alt bar */
+.bottomBar {
+  max-width: 1200px;
+  margin: 44px auto 0;
+  padding-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: #bdb6a8;
+}
+
+.legalLinks {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.dot {
+  opacity: 0.5;
+}
+
+/* mobil */
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .nav {
+    justify-content: space-between;
+    gap: 28px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}

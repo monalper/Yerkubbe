@@ -1,0 +1,128 @@
+.citationWrap {
+  display: inline;
+}
+
+.citation {
+  color: #0088cc;
+  text-decoration: none;
+}
+
+.citation:hover {
+  text-decoration: underline;
+}
+
+.mathInline {
+  padding: 0 2px;
+}
+
+.mathBlock {
+  margin: 12px 0;
+}
+
+.figure {
+  margin: 16px 0;
+  display: grid;
+  gap: 10px;
+}
+
+.figure[data-editable='false'] {
+  display: block;
+}
+
+.figure[data-editable='false'][data-align='left'] {
+  float: left;
+  width: min(320px, 44%);
+  margin: 6px 18px 12px 0;
+}
+
+.figure[data-editable='false'][data-align='right'] {
+  float: right;
+  width: min(320px, 44%);
+  margin: 6px 0 12px 18px;
+}
+
+.figure[data-editable='false'][data-align='center'] {
+  float: none;
+  margin: 18px auto;
+  width: min(560px, 100%);
+}
+
+.figure[data-align='left'] {
+  justify-items: start;
+}
+.figure[data-align='center'] {
+  justify-items: center;
+}
+.figure[data-align='right'] {
+  justify-items: end;
+}
+
+.figureImg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.figure[data-editable='false'] .figureImg {
+  width: 100%;
+}
+
+.figureCaption {
+  color: var(--muted);
+  font-size: 14px;
+  background: var(--field);
+  padding: 10px 12px;
+  border-radius: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.captionText {
+  margin: 0;
+  color: var(--text);
+}
+
+.captionMeta {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.figureForm {
+  display: grid;
+  gap: 10px;
+  width: min(720px, 100%);
+}
+
+.figureLabel {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.figureInput {
+  padding: 10px 12px;
+  background: var(--field);
+  border: 0;
+  border-radius: 0;
+}
+
+.figureRemove {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  justify-self: start;
+}
+
+@media (max-width: 700px) {
+  .figure[data-editable='false'][data-align='left'],
+  .figure[data-editable='false'][data-align='right'] {
+    float: none;
+    width: 100%;
+    margin: 16px 0;
+  }
+}

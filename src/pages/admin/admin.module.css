@@ -1,0 +1,125 @@
+.narrow {
+  max-width: 420px;
+}
+
+.h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.muted {
+  color: #666666;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #ededf0;
+  border: 0;
+  border-radius: 0;
+}
+
+.primary {
+  padding: 10px 12px;
+  background: #1d1d1f;
+  color: #f5f5f7;
+  border: 0;
+  cursor: pointer;
+}
+
+.primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.primaryLink {
+  padding: 10px 12px;
+  background: #1d1d1f;
+  color: #f5f5f7;
+  text-decoration: none;
+}
+
+.error {
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.adminList {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 14px;
+}
+
+.adminRow {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.adminMain {
+  min-width: 0;
+}
+
+.adminTitle {
+  font-weight: 700;
+  color: #0088cc;
+}
+
+.adminMeta {
+  margin-top: 6px;
+  color: #979797;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.adminActions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.buttonLink {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #0088cc;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
