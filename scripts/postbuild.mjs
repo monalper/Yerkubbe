@@ -116,7 +116,14 @@ async function main() {
   }
 
   const buildDate = isoDateOnly(new Date())
-  const staticPaths = ['/', '/about']
+  const staticPaths = [
+    '/',
+    '/about',
+    '/kullanim-haklari',
+    '/sorumluluk-reddi',
+    '/destekle',
+    '/gelistirici-yazarlik-talebi',
+  ]
   const staticUrls = staticPaths.map((p) => ({
     loc: `${effectiveBaseUrl}${p}`,
     lastmod: buildDate,

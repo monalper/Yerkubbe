@@ -10,11 +10,26 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 44px var(--page-pad-x) 96px;
+  min-height: 100svh;
 }
 
 .mainArticle {
   max-width: none;
   margin: 0;
+}
+
+.mainWide {
+  max-width: none;
+  margin: 0;
+}
+
+.mainHome {
+  max-width: none;
+  margin: 0;
+  padding: 0 var(--page-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 640px) {

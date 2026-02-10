@@ -68,8 +68,10 @@ select {
 }
 
 mark {
-  background: #ededf0;
+  background: #fff2a8;
   color: inherit;
+  padding: 0 3px;
+  border-radius: 4px;
 }
 
 @media (max-width: 640px) {

@@ -32,6 +32,124 @@
   padding: 0;
 }
 
+.searchGrid {
+  list-style: none;
+  padding: 0;
+  margin: 34px 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 48px 40px;
+  width: 100%;
+}
+
+.searchCard {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchTitle {
+  display: inline-block;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.searchTitle:hover {
+  text-decoration: underline;
+}
+
+.searchSnippet {
+  margin: 18px 0 0;
+  color: var(--text);
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.searchMeta {
+  margin: auto 0 0;
+  padding-top: 26px;
+  color: var(--muted2);
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.searchTag {
+  white-space: nowrap;
+}
+
+.pagination {
+  margin: 46px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationInner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pageNumbers {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pageLink,
+.pageNav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 9999px;
+  text-decoration: none;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.pageLink:hover,
+.pageNav:hover {
+  background: rgba(0, 0, 0, 0.07);
+  text-decoration: none;
+}
+
+.pageLink[data-active='true'] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.pageNav[aria-disabled='true'] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.pageEllipsis {
+  min-width: 18px;
+  text-align: center;
+  color: var(--muted2);
+}
+
+.pageStatus {
+  margin: 0;
+  color: var(--muted2);
+  font-size: 13px;
+}
+
 .title {
   font-size: 18px;
   font-weight: 650;
@@ -137,9 +255,294 @@
   opacity: 0.92;
 }
 
+.homeShell {
+  width: 100%;
+}
+
+.sideNav {
+  grid-area: side;
+  padding: 14px 12px;
+  background: var(--paper);
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 12px;
+}
+
+.sideNavTitle {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin: 0 0 10px;
+}
+
+.sideNavList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.homeMain {
+  grid-area: main;
+  min-width: 0;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.homeHero {
+  text-align: center;
+  padding: 0;
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+
+.homeTitle {
+  margin: 0;
+  font-family: 'Source Serif 4', ui-serif, Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+}
+
+.homeQuickLinks {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.homeQuickLink {
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.homeQuickLink:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.homeTagline {
+  margin: 0 0 12px;
+  color: var(--muted2);
+  font-size: 14px;
+  font-style: italic;
+}
+
+.homeSearchForm {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--paper);
+  border: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  padding: 10px 12px 10px 16px;
+  outline: none;
+}
+
+.homeSearchIcon {
+  width: 18px;
+  height: 18px;
+  color: var(--muted2);
+  flex: 0 0 auto;
+  margin-left: 2px;
+}
+
+.homeSearchInput {
+  flex: 1 1 auto;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  outline: none;
+  min-width: 0;
+}
+
+.homeSearchForm :focus-visible {
+  outline: none;
+}
+
+.homeSearchGo {
+  flex: 0 0 auto;
+  border: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  padding: 0;
+  background: var(--text);
+  color: var(--bg);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
+.homeSearchGo:hover {
+  opacity: 0.92;
+}
+
+.homeSearchGo[data-active='false'] {
+  opacity: 0.55;
+}
+
+.homeSearchGoIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.portalGrid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.portal {
+  --portal-header: var(--field);
+  background: var(--paper);
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.portalGreen {
+  --portal-header: #d8f7df;
+}
+
+.portalBlue {
+  --portal-header: #dbeeff;
+}
+
+.portalHeader {
+  padding: 10px 12px;
+  background: var(--portal-header);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.portalTitle {
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+.portalBody {
+  padding: 12px;
+}
+
+.portalText {
+  margin: 0 0 10px;
+  color: var(--text);
+}
+
+.portalHint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.portalFeaturedTitle {
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 650;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.portalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.miniList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.miniListItem {
+  position: relative;
+  padding-left: 14px;
+}
+
+.miniListItem::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--muted2);
+}
+
+.rightRail {
+  grid-area: rail;
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.homeShell .list {
+  max-width: none;
+  margin: 14px 0 0;
+}
+
+@media (max-width: 1100px) {
+  .homeShell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'main'
+      'rail'
+      'side';
+  }
+
+  .sideNav {
+    position: static;
+  }
+
+  .searchGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 44px 34px;
+  }
+}
+
+@media (max-width: 860px) {
+  .portalGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .searchGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 38px 26px;
+  }
+}
+
 @media (max-width: 640px) {
   .h1 {
     font-size: 30px;
+  }
+
+  .searchGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 28px;
+  }
+
+  .searchTitle {
+    font-size: 22px;
+  }
+
+  .homeTitle {
+    font-size: 36px;
   }
 
   .notFoundCode {

@@ -11,7 +11,7 @@ import styles from './public.module.css'
 
 export function ArticlePage() {
   const { slug } = useParams()
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['article', 'slug', slug],
     queryFn: () => getArticleBySlug(slug!),
     enabled: Boolean(slug),
@@ -24,11 +24,22 @@ export function ArticlePage() {
     enabled: internalSlugs.length > 0,
   })
 
+  const canonicalPathFromParam = slug ? `/text/${encodeURIComponent(slug)}` : null
+
   if (isLoading) {
     return (
       <>
-        <Seo title="Makale" description="Makale yükleniyor." noindex />
+        <Seo title="Makale" description="Makale yükleniyor." canonicalPath={canonicalPathFromParam} />
         <p className={styles.muted}>Yükleniyor…</p>
+      </>
+    )
+  }
+
+  if (error) {
+    return (
+      <>
+        <Seo title="Makale" description="Makale yüklenemedi." canonicalPath={canonicalPathFromParam} />
+        <p className={styles.muted}>Makale yüklenemedi.</p>
       </>
     )
   }
@@ -36,14 +47,19 @@ export function ArticlePage() {
   if (!data) {
     return (
       <>
-        <Seo title="Makale bulunamadı" description="Makale bulunamadı." noindex />
+        <Seo
+          title="Makale bulunamadı"
+          description="Makale bulunamadı."
+          canonicalPath={canonicalPathFromParam}
+          noindex
+        />
         <p className={styles.muted}>Makale bulunamadı.</p>
       </>
     )
   }
 
   const missing = (slugCheck?.missing ?? []).slice(0, 10)
-  const canonicalPath = `/text/${data.slug}`
+  const canonicalPath = `/text/${encodeURIComponent(data.slug)}`
   const description = toMetaDescription(data.lead) ?? toMetaDescription(data.content_text) ?? null
   const origin = getSiteOrigin()
   const canonicalUrl = origin ? new URL(canonicalPath, origin).toString() : null

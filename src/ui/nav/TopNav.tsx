@@ -107,7 +107,7 @@ export function TopNav({ wide }: { wide?: boolean }) {
             <button
               type="button"
               className={styles.iconButton}
-              aria-label={searchOpen ? 'Kapat' : 'Arama'}
+              aria-label={searchOpen ? 'Kapat' : 'Keşfet'}
               aria-controls="navq"
               aria-expanded={searchOpen}
               onClick={() => {
@@ -154,7 +154,7 @@ export function TopNav({ wide }: { wide?: boolean }) {
                   Anasayfa
                 </Link>
                 <Link to="/search" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
-                  Arama
+                  Keşfet
                 </Link>
                 <Link to="/about" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
                   Hakkımızda

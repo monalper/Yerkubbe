@@ -21,7 +21,7 @@ export function NotFoundPage() {
           Anasayfa
         </Link>
         <Link to="/search" className={styles.secondaryLink}>
-          Arama
+          Keşfet
         </Link>
       </div>
     </section>

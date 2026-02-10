@@ -1,35 +1,65 @@
-import { useQuery } from '@tanstack/react-query'
-import { Link } from 'react-router-dom'
-import { listPublishedArticles } from '../../features/articles/queries'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ArrowRight, Search as SearchIcon } from 'lucide-react'
 import { Seo } from '../../lib/seo/Seo'
 import styles from './public.module.css'
 
 export function HomePage() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['articles', 'published'],
-    queryFn: listPublishedArticles,
-  })
+  const navigate = useNavigate()
+  const [q, setQ] = useState('')
+  const hasQuery = q.trim().length > 0
 
-    return (
-      <section>
-      <Seo title="Makaleler" description="Yayınlanmış metinler. Yerkubbe arşivindeki tüm makaleleri burada bulabilirsin." />
-      <h1 className={styles.h1}>Makaleler</h1>
-      <p className={styles.lead}>Yayınlanmış metinler.</p>
+  return (
+    <section className={styles.homeShell}>
+      <Seo title="Anasayfa" description="Yerkubbe: özgür metin arşivi." />
 
-      {isLoading && <p className={styles.muted}>Yükleniyor…</p>}
-      {error && <p className={styles.muted}>Bir hata oluştu.</p>}
+      <div className={styles.homeMain}>
+        <header className={styles.homeHero}>
+          <h1 className={styles.homeTitle}>Yerkubbe</h1>
+          <p className={styles.homeTagline}>(Yerkkube gerçek bir terim değildir.)</p>
 
-      <ul className={styles.list} aria-label="Makale listesi">
-        {(data ?? []).map((a) => (
-          <li key={a.id} className={styles.listItem}>
-            <Link to={`/text/${a.slug}`} className={styles.title}>
-              {a.title}
+          <form
+            className={styles.homeSearchForm}
+            role="search"
+            onSubmit={(e) => {
+              e.preventDefault()
+              const next = q.trim()
+              navigate(next ? `/search?q=${encodeURIComponent(next)}` : '/search')
+            }}
+          >
+            <label className="srOnly" htmlFor="homeq">
+              Ara
+            </label>
+            <SearchIcon className={styles.homeSearchIcon} aria-hidden />
+            <input
+              id="homeq"
+              name="q"
+              className={styles.homeSearchInput}
+              placeholder="Yerkubbe'de ara…"
+              autoComplete="off"
+              value={q}
+              onChange={(e) => setQ(e.currentTarget.value)}
+            />
+            <button
+              className={styles.homeSearchGo}
+              type="submit"
+              aria-label={hasQuery ? 'Ara' : 'Keşfet sayfasına git'}
+              data-active={hasQuery ? 'true' : 'false'}
+            >
+              <ArrowRight className={styles.homeSearchGoIcon} aria-hidden />
+            </button>
+          </form>
+
+          <nav className={styles.homeQuickLinks} aria-label="Kısa bağlantılar">
+            <Link className={styles.homeQuickLink} to="/search">
+              Tüm Yazılar
             </Link>
-            {a.lead ? <p className={styles.snippet}>{a.lead}</p> : null}
-            {a.tags?.length ? <p className={styles.meta}>{a.tags.join(' · ')}</p> : null}
-          </li>
-        ))}
-      </ul>
+            <Link className={styles.homeQuickLink} to="/about">
+              Yerkubbe Nedir?
+            </Link>
+          </nav>
+        </header>
+      </div>
     </section>
   )
 }

@@ -15,10 +15,12 @@ function normalizeTags(input: string[]): string[] {
   return out
 }
 
-export async function listPublishedArticles(): Promise<Pick<ArticleRow, 'id' | 'title' | 'slug' | 'lead' | 'tags'>[]> {
+export async function listPublishedArticles(): Promise<
+  Pick<ArticleRow, 'id' | 'title' | 'slug' | 'lead' | 'tags' | 'content_text'>[]
+> {
   const { data, error } = await supabase
     .from('articles')
-    .select('id,title,slug,lead,tags')
+    .select('id,title,slug,lead,tags,content_text')
     .eq('status', 'published')
     .is('deleted_at', null)
     .order('published_at', { ascending: false, nullsFirst: false })
@@ -114,7 +116,7 @@ export async function searchArticles(q: string): Promise<ArticleSearchResult[]> 
   const like = `%${query}%`
   const { data, error } = await supabase
     .from('articles')
-    .select('id,slug,title,lead,tags')
+    .select('id,slug,title,lead,tags,content_text')
     .eq('status', 'published')
     .is('deleted_at', null)
     .or(`title.ilike.${like},lead.ilike.${like},content_text.ilike.${like}`)

@@ -117,6 +117,10 @@ export default async function handler(req, res) {
   const urls = [
     { loc: `${baseUrl}/`, lastmod: latestLastmod },
     { loc: `${baseUrl}/about`, lastmod: null },
+    { loc: `${baseUrl}/kullanim-haklari`, lastmod: null },
+    { loc: `${baseUrl}/sorumluluk-reddi`, lastmod: null },
+    { loc: `${baseUrl}/destekle`, lastmod: null },
+    { loc: `${baseUrl}/gelistirici-yazarlik-talebi`, lastmod: null },
     ...articleUrls,
   ]
 
