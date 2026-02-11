@@ -1,5 +1,7 @@
 import { Node, type Editor } from '@tiptap/core'
 import { NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react'
+import { useEffect, useId, useState } from 'react'
+import { createPortal } from 'react-dom'
 import styles from './nodes.module.css'
 
 export type FigureAttrs = {
@@ -48,10 +50,43 @@ function FigureView(props: {
 }) {
   const attrs = props.node.attrs as FigureAttrs
   const editable = props.editor.isEditable
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+  const lightboxTitleId = useId()
+
+  useEffect(() => {
+    if (!isLightboxOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [isLightboxOpen])
 
   return (
     <NodeViewWrapper as="figure" className={styles.figure} data-align={attrs.align} data-editable={editable ? 'true' : 'false'}>
-      {attrs.src ? <img className={styles.figureImg} src={attrs.src} alt={attrs.alt || ''} /> : null}
+      {attrs.src ? (
+        editable ? (
+          <img className={styles.figureImg} src={attrs.src} alt={attrs.alt || ''} />
+        ) : (
+          <button
+            type="button"
+            className={styles.figureImgButton}
+            onClick={() => setIsLightboxOpen(true)}
+            aria-label="Görseli büyüt"
+          >
+            <img className={styles.figureImg} src={attrs.src} alt={attrs.alt || ''} />
+          </button>
+        )
+      ) : null}
 
       {editable ? (
         <div className={styles.figureForm}>
@@ -97,13 +132,59 @@ function FigureView(props: {
           </button>
         </div>
       ) : (
-        <figcaption className={styles.figureCaption}>
-          {attrs.caption ? <p className={styles.captionText}>{attrs.caption}</p> : null}
-          <p className={styles.captionMeta}>
-            {attrs.source ? <span>{attrs.source}</span> : null}
-            {attrs.license ? <span> · {attrs.license}</span> : null}
-          </p>
-        </figcaption>
+        <>
+          {attrs.caption ? (
+            <figcaption className={styles.figureCaption}>
+              <p className={styles.captionText}>{attrs.caption}</p>
+            </figcaption>
+          ) : null}
+
+          {isLightboxOpen
+            ? createPortal(
+                <div className={styles.lightboxBackdrop} onClick={() => setIsLightboxOpen(false)}>
+                  <div
+                    className={styles.lightbox}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby={lightboxTitleId}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <button
+                      type="button"
+                      className={styles.lightboxClose}
+                      onClick={() => setIsLightboxOpen(false)}
+                      aria-label="Kapat"
+                      autoFocus
+                    >
+                      ×
+                    </button>
+
+                    <img className={styles.lightboxImg} src={attrs.src} alt={attrs.alt || ''} />
+
+                    <div className={styles.lightboxCaption} id={lightboxTitleId}>
+                      {attrs.caption || 'Görsel'}
+                    </div>
+
+                    <div className={styles.lightboxMeta}>
+                      {attrs.source ? (
+                        <div className={styles.lightboxMetaRow}>
+                          <span className={styles.lightboxMetaLabel}>Sahiplik :</span>
+                          <span>{attrs.source}</span>
+                        </div>
+                      ) : null}
+                      {attrs.license ? (
+                        <div className={styles.lightboxMetaRow}>
+                          <span className={styles.lightboxMetaLabel}>Lisans :</span>
+                          <span>{attrs.license}</span>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>,
+                document.body,
+              )
+            : null}
+        </>
       )}
     </NodeViewWrapper>
   )

@@ -54,7 +54,7 @@ export function HomePage() {
             <Link className={styles.homeQuickLink} to="/search">
               Tüm Yazılar
             </Link>
-            <Link className={styles.homeQuickLink} to="/about">
+            <Link className={styles.homeQuickLink} to="/text/birinci-rehber">
               Yerkubbe Nedir?
             </Link>
           </nav>

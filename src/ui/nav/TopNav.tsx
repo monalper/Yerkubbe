@@ -15,6 +15,7 @@ export function TopNav({ wide }: { wide?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const searchInputRef = useRef<HTMLInputElement | null>(null)
+  const menuWrapRef = useRef<HTMLDivElement | null>(null)
   const popupOpen = menuOpen || searchOpen
 
   const [searchValue, setSearchValue] = useState(urlQ)
@@ -46,6 +47,19 @@ export function TopNav({ wide }: { wide?: boolean }) {
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [popupOpen])
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    function onPointerDown(e: PointerEvent) {
+      const wrap = menuWrapRef.current
+      if (!wrap) return
+      if (e.target instanceof Node && !wrap.contains(e.target)) setMenuOpen(false)
+    }
+
+    window.addEventListener('pointerdown', onPointerDown)
+    return () => window.removeEventListener('pointerdown', onPointerDown)
+  }, [menuOpen])
 
   useEffect(() => {
     if (!popupOpen) return
@@ -104,73 +118,67 @@ export function TopNav({ wide }: { wide?: boolean }) {
               </div>
             </Form>
 
-            <button
-              type="button"
-              className={styles.iconButton}
-              aria-label={searchOpen ? 'Kapat' : 'Keşfet'}
-              aria-controls="navq"
-              aria-expanded={searchOpen}
-              onClick={() => {
-                setSearchOpen((v) => !v)
-                setMenuOpen(false)
-              }}
-            >
-              {searchOpen ? (
-                <X className={styles.icon} aria-hidden />
-              ) : (
-                <SearchIcon className={styles.icon} aria-hidden />
-              )}
-            </button>
-          </div>
-
           <button
             type="button"
             className={styles.iconButton}
-            aria-label="Menü"
-            aria-controls="topnav-menu"
-            aria-expanded={menuOpen}
+            aria-label={searchOpen ? 'Kapat' : 'Keşfet'}
+            aria-controls="navq"
+            aria-expanded={searchOpen}
             onClick={() => {
-              setMenuOpen((v) => !v)
-              setSearchOpen(false)
+              setSearchOpen((v) => !v)
+              setMenuOpen(false)
             }}
           >
-            {menuOpen ? <X className={styles.icon} aria-hidden /> : <Menu className={styles.icon} aria-hidden />}
+            {searchOpen ? (
+              <X className={styles.icon} aria-hidden />
+            ) : (
+              <SearchIcon className={styles.icon} aria-hidden />
+            )}
           </button>
-        </div>
-      </div>
+          </div>
 
-      {menuOpen ? (
-        <div className={styles.dropdownWrap}>
-          <div
-            id="topnav-menu"
-            className={`${styles.menuPanel} ${styles.menuPanelBare}`}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Gezinme"
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-              <nav className={styles.menuNav} aria-label="Sayfalar">
-                <Link to="/" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
-                  Anasayfa
-                </Link>
-                <Link to="/search" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
-                  Keşfet
-                </Link>
-                <Link to="/about" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
-                  Hakkımızda
-                </Link>
-                {showAdmin ? (
-                  <>
-                    <div className={styles.menuDivider} aria-hidden />
-                    <Link to="/admin/articles" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
-                      Admin
-                    </Link>
-                  </>
-                ) : null}
-              </nav>
+          <div className={styles.menuWrap} ref={menuWrapRef}>
+            <button
+              type="button"
+              className={styles.iconButton}
+              aria-label="Menü"
+              aria-haspopup="menu"
+              aria-controls="topnav-menu"
+              aria-expanded={menuOpen}
+              onClick={() => {
+                setMenuOpen((v) => !v)
+                setSearchOpen(false)
+              }}
+            >
+              {menuOpen ? <X className={styles.icon} aria-hidden /> : <Menu className={styles.icon} aria-hidden />}
+            </button>
+
+            {menuOpen ? (
+              <div id="topnav-menu" className={styles.menuDropdown} aria-label="Gezinme">
+                <nav className={styles.menuNav} aria-label="Sayfalar">
+                  <Link to="/" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
+                    Anasayfa
+                  </Link>
+                  <Link to="/search" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
+                    Keşfet
+                  </Link>
+                  <Link to="/text/birinci-rehber" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
+                    Yerkubbe nedir?
+                  </Link>
+                  {showAdmin ? (
+                    <>
+                      <div className={styles.menuDivider} aria-hidden />
+                      <Link to="/admin/articles" className={styles.menuLink} onClick={() => setMenuOpen(false)}>
+                        Admin
+                      </Link>
+                    </>
+                  ) : null}
+                </nav>
+              </div>
+            ) : null}
           </div>
         </div>
-      ) : null}
+      </div>
     </header>
   )
 }

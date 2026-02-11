@@ -63,6 +63,20 @@
   display: block;
 }
 
+.figureImgButton {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+}
+
+.figureImgButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 .figure[data-editable='false'] .figureImg {
   width: 100%;
 }
@@ -82,9 +96,71 @@
   color: var(--text);
 }
 
-.captionMeta {
-  margin: 6px 0 0;
-  color: var(--muted);
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+}
+
+.lightbox {
+  width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightboxClose {
+  align-self: flex-end;
+  padding: 6px 10px;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.lightboxClose:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.lightboxImg {
+  max-width: 100%;
+  max-height: 82vh;
+  object-fit: contain;
+}
+
+.lightboxCaption {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.lightboxMeta {
+  color: #ddd;
+  font-size: 14px;
+  text-align: center;
+  display: grid;
+  gap: 6px;
+}
+
+.lightboxMetaRow {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.lightboxMetaLabel {
+  color: #fff;
 }
 
 .figureForm {
@@ -124,5 +200,13 @@
     float: none;
     width: 100%;
     margin: 16px 0;
+  }
+
+  .lightboxBackdrop {
+    padding: 12px;
+  }
+
+  .lightboxImg {
+    max-height: 78vh;
   }
 }

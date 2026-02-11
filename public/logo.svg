@@ -1,13 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="662" height="662" viewBox="0 0 662 662">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1136" height="1136" viewBox="0 0 1136 1136">
   <defs>
-    <clipPath id="clip-path">
-      <rect y="265" width="393" height="406" fill="none"/>
+    <clipPath id="clip-logo">
+      <rect width="1136" height="1136"/>
     </clipPath>
   </defs>
-  <g id="logo" transform="translate(-323 -281)">
-    <rect id="Rectangle_1" data-name="Rectangle 1" width="662" height="662" rx="331" transform="translate(323 281)" fill="#f5f5f7"/>
-    <g id="Scroll_Group_1" data-name="Scroll Group 1" transform="translate(458 144)" clip-path="url(#clip-path)" style="isolation: isolate">
-      <text id="y." transform="translate(57 540)" fill="#1d1d1f" font-size="606" font-family="TimesNewRomanPS-BoldItalicMT, Times New Roman" font-weight="700" font-style="italic"><tspan x="0" y="0">y.</tspan></text>
-    </g>
+  <g id="logo" clip-path="url(#clip-logo)">
+    <rect width="1136" height="1136" fill="#1d1d1f"/>
+    <text id="Yk" transform="translate(129 902)" fill="#fff" font-size="1000" font-family="AppleGaramond-Italic, Apple Garamond" font-style="italic"><tspan x="0" y="0">Yk</tspan></text>
   </g>
 </svg>

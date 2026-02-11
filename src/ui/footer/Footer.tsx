@@ -9,27 +9,27 @@ export function Footer() {
       <div className={styles.inner}>
         <div className={styles.brand}>
           <Link to="/" className={styles.brandName} aria-label="Yerkubbe ana sayfaya dön">
-            Yerkubbe
+            
           </Link>
           <span className={styles.license}>
-            © {currentYear} Tüm hakları saklıdır.
+            © {currentYear} Yerkubbe Tüm hakları saklıdır.
           </span>
         </div>
 
         <nav className={styles.nav} aria-label="Kurumsal bağlantılar">
-          <Link className={styles.link} to="/about">
+          <Link className={styles.link} to="/text/birinci-rehber">
             Yerkubbe Nedir?
           </Link>
-          <Link className={styles.link} to="/gelistirici-yazarlik-talebi">
+          <Link className={styles.link} to="/text/ikinci-rehber">
             Yazarlık Talebi
           </Link>
-          <Link className={styles.link} to="/destekle">
+          <Link className={styles.link} to="/text/ikinci-rehber#destekle">
             Destekle
           </Link>
-          <Link className={styles.link} to="/kullanim-haklari">
+          <Link className={styles.link} to="/text/ucuncu-rehber#kullanim">
             Kullanım
           </Link>
-          <Link className={styles.link} to="/sorumluluk-reddi">
+          <Link className={styles.link} to="/text/ucuncu-rehber#sorumluluk-reddi">
             Sorumluluk Reddi
           </Link>
         </nav>

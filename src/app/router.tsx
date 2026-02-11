@@ -6,14 +6,9 @@ import { AdminArticleNewPage } from '../pages/admin/AdminArticleNewPage'
 import { AdminLoginPage } from '../pages/admin/AdminLoginPage'
 import { AdminNotFoundPage } from '../pages/admin/AdminNotFoundPage'
 import { ArticlePage } from '../pages/public/ArticlePage'
-import { AboutPage } from '../pages/public/AboutPage'
-import { DisclaimerPage } from '../pages/public/DisclaimerPage'
-import { DeveloperAuthorshipRequestPage } from '../pages/public/DeveloperAuthorshipRequestPage'
 import { HomePage } from '../pages/public/HomePage'
 import { NotFoundPage } from '../pages/public/NotFoundPage'
 import { SearchPage } from '../pages/public/SearchPage'
-import { SupportPage } from '../pages/public/SupportPage'
-import { UsageRightsPage } from '../pages/public/UsageRightsPage'
 import { AdminLayout } from '../ui/layout/AdminLayout'
 import { PublicLayout } from '../ui/layout/PublicLayout'
 
@@ -24,11 +19,14 @@ export const router = createBrowserRouter([
       { path: '/', element: <HomePage /> },
       { path: '/text/:slug', element: <ArticlePage /> },
       { path: '/search', element: <SearchPage /> },
-      { path: '/about', element: <AboutPage /> },
-      { path: '/kullanim-haklari', element: <UsageRightsPage /> },
-      { path: '/sorumluluk-reddi', element: <DisclaimerPage /> },
-      { path: '/destekle', element: <SupportPage /> },
-      { path: '/gelistirici-yazarlik-talebi', element: <DeveloperAuthorshipRequestPage /> },
+      { path: '/about', element: <Navigate to="/text/birinci-rehber" replace /> },
+      { path: '/kullanim-haklari', element: <Navigate to="/text/ucuncu-rehber#kullanim" replace /> },
+      { path: '/sorumluluk-reddi', element: <Navigate to="/text/ucuncu-rehber#sorumluluk-reddi" replace /> },
+      { path: '/destekle', element: <Navigate to="/text/ikinci-rehber#destekle" replace /> },
+      {
+        path: '/gelistirici-yazarlik-talebi',
+        element: <Navigate to="/text/ikinci-rehber" replace />,
+      },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

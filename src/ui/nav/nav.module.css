@@ -253,54 +253,36 @@
   font-weight: 600;
 }
 
-.dropdownWrap {
+.menuWrap {
   position: relative;
-  z-index: 1;
-  padding: 12px var(--page-pad-x) 16px;
+  display: inline-flex;
+  align-items: center;
 }
 
-.menuPanel {
-  max-width: var(--reader-shell);
-  margin: 0 auto;
-  padding: 18px;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  animation: menuPop 160ms ease-out;
-}
-
-.menuPanelBare {
-  padding: 0;
-  background: transparent;
+.menuDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 2;
+  min-width: 200px;
+  max-width: min(260px, calc(100vw - 24px));
+  padding: 6px 0;
+  background: var(--paper);
   border: 0;
   border-radius: 0;
-}
-
-@keyframes menuPop {
-  from {
-    opacity: 0;
-    transform: translateY(-8px) scale(0.99);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  box-shadow: none;
 }
 
 .menuNav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+  display: grid;
+  gap: 0;
 }
 
 .menuLink {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 12px;
-  border-radius: 14px;
-  font-size: 18px;
-  font-weight: 500;
+  display: block;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 400;
   color: var(--text);
   text-decoration: none;
   white-space: nowrap;
@@ -308,13 +290,13 @@
 
 .menuLink:hover {
   background: rgba(0, 0, 0, 0.04);
-  text-decoration: none;
 }
 
 .menuDivider {
   height: 1px;
+  width: 100%;
   background: rgba(0, 0, 0, 0.08);
-  margin: 8px 6px;
+  margin: 6px 0;
 }
 
 .link,
@@ -331,10 +313,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .menuPanel {
-    animation: none;
-  }
-
   .searchInlineShell {
     transition: none;
     transform: none;
@@ -372,18 +350,8 @@
     width: clamp(150px, 50vw, 240px);
   }
 
-  .dropdownWrap {
-    padding: 12px var(--page-pad-x) 14px;
-  }
-
-  .menuPanel {
-    padding: 14px;
-    border-radius: 18px;
-  }
-
   .menuLink {
-    font-size: 16px;
-    padding: 10px 10px;
-    border-radius: 12px;
+    font-size: 15px;
+    padding: 10px 14px;
   }
 }
